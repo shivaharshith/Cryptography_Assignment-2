@@ -14,9 +14,9 @@ from Record import Record
 class Block:
 
 # To create a block in the blockchain
-    def __init__(self, record_list: list, prevHash: str, curr_med_info: Record, non=0):
+    def __init__(self, record_list: list, prevHash: str, curr_transaction_info: Record, non=0):
         self.__non__ = non
-        self.__curr_med_info__ = curr_med_info
+        self.__curr_transaction_info__ = curr_transaction_info
         self.__prevHash__ = prevHash
         self.__timeStamp__ = datetime.datetime.now()
         self.__recordObject__ = record_list
@@ -51,18 +51,18 @@ class Block:
     def getBlockHash(self) -> str:
         return self.__hashBlock__
 
-# To find the time when the medical information was stored
+# To find the time when the transaction information was stored
     def getTimeStamp(self) -> int:
         return self.__timeStamp__
 
-# To get the doctor's name from the block
-    def doc_name(self) -> str:
-        return self.__curr_med_info__.getDoctor()
+# To get the lender's name from the block
+    def lender_name(self) -> str:
+        return self.__curr_transaction_info__.getLender()
 
 # To get the patient's name from the block
-    def patient_name(self) -> str:
-        return self.__curr_med_info__.getPatient()
+    def borrower_name(self) -> str:
+        return self.__curr_transaction_info__.getBorrower()
 
 # To print the information
     def printInfo(self) -> None:
-        self.__curr_med_info__.printInfo()
+        self.__curr_transaction_info__.printInfo()

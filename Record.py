@@ -1,29 +1,25 @@
 # Cryptography Assignment - 2
-# Group - 40
-# Isha Gohel - 2018B4A70454H
-# Divyani Srivastava - 2018B4A71050H
-# Shreya Srirampur - 2018B4A70886H
 
 # Information stored in Record
 class Record:
 
     def __init__(self):
-        self.__doctor__ = ''
-        self.__patient__ = ''
+        self.__lender__ = ''
+        self.__borrower__ = ''
         self.__info__ = []
 
-    def addUsers(self, doctor: str, patient: str) -> None:
-        self.__doctor__ = doctor
-        self.__patient__ = patient
+    def addUsers(self, lender: str, borrower: str) -> None:
+        self.__lender__ = lender
+        self.__borrower__ = borrower
 
-    def addInfo(self, medicalInfo: str) -> None:
-        self.__info__.append(medicalInfo)
+    def addInfo(self, transactionInfo: str) -> None:
+        self.__info__.append(transactionInfo)
 
-    def getDoctor(self) -> str:
-        return self.__doctor__
+    def getLender(self) -> str:
+        return self.__lender__
 
-    def getPatient(self) -> str:
-        return self.__patient__
+    def getBorrower(self) -> str:
+        return self.__borrower__
 
     def printInfo(self) -> None:
         for data in self.__info__:

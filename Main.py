@@ -14,8 +14,8 @@ difficulty = 4
 previousHash = '0'
 blockchain = []
 records = []
-users = []
-doctors = []
+borrowers = []
+lenders = []
 p = 11
 g = 2
 
@@ -25,7 +25,7 @@ if exists('state'):
         option = input('Previous data has been found... Would you like to import? (yes/no): ')
         if option == 'yes':
             with open('state', 'rb') as file:
-                previousHash, blockchain, records, users, doctors = pickle.load(file)
+                previousHash, blockchain, records, borrowers, lenders = pickle.load(file)
             print('Import is Successful')
             break
         elif option == 'no':
@@ -52,21 +52,21 @@ def verifyChain(block: Block) -> bool:
         return False
     return True
 
-# for viewing the records of the patients(Doctors can view all of their patient's medical records but the patient can only view their medical data)
+# for viewing the records of the borrowers(Lenders can view all of their borrowers' tramsaction records but the borrowers can only view their transaction data)
 def viewUser() -> None:
-    val = input('Are you a doctor or patient? (doctor/patient): ')
-    if val == 'doctor':
-        doc = input('Enter your name: ')
+    val = input('Are you a lender or borrower? (l/b): ')
+    if val == 'l':
+        lend = input('Enter your name: ')
         pwd = input('Enter your password: ')
         flag = False
-        for doctor in doctors:
-            if doctor.getName() == doc and doctor.getPassword() == pwd:
+        for lender in lenders:
+            if lender.getName() == lend and lender.getPassword() == pwd:
                 for block in blockchain:
-                    if block.doc_name() == doc:
+                    if block.lender_name() == lend:
                         print(
                             'Time at which data was recorded: ' + str(block.getTimeStamp()))
-                        print('Doctor:' + doc)
-                        print('Patient:' + block.patient_name())
+                        print('Lender:' + lend)
+                        print('Borrower:' + block.borrower_name())
                         print('His Medical Information:')
                         block.printInfo()
                         print()
@@ -74,32 +74,32 @@ def viewUser() -> None:
                 if flag:
                     break
         if not flag:
-            print('Doctor Not Found')
-    elif val == 'patient':
-        pat = input('Enter your name: ')
+            print('lender Not Found')
+    elif val == 'b':
+        bor = input('Enter your name: ')
         y = 0
-        for user in users:
-            if user.getName() == pat:
-                x = int(user.getPassword())
+        for borrower in borrowers:
+            if borrower.getName() == bor:
+                x = int(borrower.getPassword())
                 y = pow(g, x, p)
         if not ZeroKnowledgeProof(y):
             return
         flag = False
-        for user in users:
-            if user.getName() == pat:
+        for borrower in borrowers:
+            if borrower.getName() == bor:
                 for block in blockchain:
-                    if block.patient_name() == pat:
+                    if block.borrower_name() == bor:
                         print('Time: ' + str(block.getTimeStamp()))
-                        print('Doctor:' + block.doc_name())
-                        print('Patient:' + pat)
-                        print("Patient's Medical Data:")
+                        print('Lender:' + block.lender_name())
+                        print('Borrower:' + bor)
+                        print("Borrower's Transaction Data:")
                         block.printInfo()
                         print()
                         flag = True
                 if flag:
                     break
         if not flag:
-            print('Patient Not Found')
+            print('Borrower Not Found')
     else:
         print('Option is not recognized')
 
@@ -109,58 +109,58 @@ if __name__ == '__main__':
 # Functionalities like add/register/view added for the user
     choice = 'yes'
     while choice == 'yes':
-        option = input('What do you want to do? (add/register/view): ')
+        option = input('Do you want to register or add or view? (r/a/v): ')
 
-        if option == 'register':
-            option1 = input('Do you want to register as doctor or patient? (d/p): ')
-            if option1 == 'p':
+        if option == 'r':
+            option1 = input('Do you want to register as lender or borrower? (l/b): ')
+            if option1 == 'b':
                 name = input('Enter name: ')
                 pwd = input('Enter password (integer only): ')
                 pwd_v = input('Verify password: ')
                 if pwd == pwd_v:
-                    new_patient = User()
-                    new_patient.setName(name)
-                    new_patient.setPassword(pwd)
-                    users.append(new_patient)
+                    new_borrower = User()
+                    new_borrower.setName(name)
+                    new_borrower.setPassword(pwd)
+                    borrowers.append(new_borrower)
                 else:
                     print('Password verification has failed')
-            elif option1 == 'd':
+            elif option1 == 'l':
                 name = input('Enter name: ')
                 pwd = input('Enter password (integer only): ')
                 pwd_v = input('Verify password: ')
                 if pwd == pwd_v:
-                    new_doctor = User()
-                    new_doctor.setName(name)
-                    new_doctor.setPassword(pwd)
-                    doctors.append(new_doctor)
+                    new_lender = User()
+                    new_lender.setName(name)
+                    new_lender.setPassword(pwd)
+                    lenders.append(new_lender)
                 else:
                     print('Password verification has failed')
             else:
                 print('Option is not recognised')
 
-        elif option == 'add':
-            doc_name = input('Enter the doctor name: ')
-            doc_pwd = input('Enter doctor password: ')
-            pat_name = input('Enter patient name: ')
+        elif option == 'a':
+            lender_name = input('Enter the lender name: ')
+            lender_pwd = input('Enter lender password: ')
+            borrower_name = input('Enter borrower name: ')
             y = 0
-            for user in users:
-                if user.getName() == pat_name:
-                    x = int(user.getPassword())
+            for borrower in borrowers:
+                if borrower.getName() == borrower_name:
+                    x = int(borrower.getPassword())
                     y = pow(g, x, p)
             if not ZeroKnowledgeProof(y):
                 continue
 
             new_rec = Record()
-            new_rec.addUsers(doc_name, pat_name)
+            new_rec.addUsers(lender_name, borrower_name)
 
             flag = False
 
-            for doctor in doctors:
-                if doctor.getName() == doc_name and doctor.getPassword() == doc_pwd:
-                    for user in users:
-                        if user.getName() == pat_name:
+            for lender in lenders:
+                if lender.getName() == lender_name and lender.getPassword() == lender_pwd:
+                    for borrower in borrowers:
+                        if borrower.getName() == borrower_name:
                             while True:
-                                ip = input('Do you want to enter medical information (yes/no): ')
+                                ip = input('Do you want to enter transaction information (yes/no): ')
                                 if ip == 'yes':
                                     newdata = input()
                                     new_rec.addInfo(newdata)
@@ -179,13 +179,13 @@ if __name__ == '__main__':
             if not flag:
                 print('Something is Wrong!!!')
 
-        elif option == 'view':
+        elif option == 'v':
             viewUser()
 
         choice = input('Do you want to continue? (yes/no): ')
 
     with open('state', 'wb') as file:
-        dump = (previousHash, blockchain, records, users, doctors)
+        dump = (previousHash, blockchain, records, borrowers, lenders)
         pickle.dump(dump, file)
 
 

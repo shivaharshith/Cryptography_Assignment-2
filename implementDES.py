@@ -1,8 +1,4 @@
 # Cryptography Assignment - 2
-# Group - 40
-# Isha Gohel - 2018B4A70454H
-# Divyani Srivastava - 2018B4A71050H
-# Shreya Srirampur - 2018B4A70886H
 
 #Tables required to implement Data Encrytion Standard
 
