@@ -1,8 +1,4 @@
 # Cryptography Assignment - 2
-# Group - 40
-# Isha Gohel - 2018B4A70454H
-# Divyani Srivastava - 2018B4A71050H
-# Shreya Srirampur - 2018B4A70886H
 #Evanston
 
 import pickle
@@ -110,42 +106,37 @@ def viewUser() -> None:
 
 if __name__ == '__main__':
 
-# Adding doctors
-    doc1 = User()
-    doc1.setName('Isha')
-    doc1.setPassword('1')
-    doctors.append(doc1)
-    users.append(doc1)
-
-    doc2 = User()
-    doc2.setName('Shreya')
-    doc2.setPassword('2')
-    doctors.append(doc2)
-    users.append(doc2)
-
-    doc3 = User()
-    doc3.setName('Divyani')
-    doc3.setPassword('3')
-    doctors.append(doc3)
-    users.append(doc3)
-
-
 # Functionalities like add/register/view added for the user
     choice = 'yes'
     while choice == 'yes':
         option = input('What do you want to do? (add/register/view): ')
 
         if option == 'register':
-            name = input('Enter name: ')
-            pwd = input('Enter password (integer only): ')
-            pwd_v = input('Verify password: ')
-            if pwd == pwd_v:
-                new_patient = User()
-                new_patient.setName(name)
-                new_patient.setPassword(pwd)
-                users.append(new_patient)
+            option1 = input('Do you want to register as doctor or patient? (d/p): ')
+            if option1 == 'p':
+                name = input('Enter name: ')
+                pwd = input('Enter password (integer only): ')
+                pwd_v = input('Verify password: ')
+                if pwd == pwd_v:
+                    new_patient = User()
+                    new_patient.setName(name)
+                    new_patient.setPassword(pwd)
+                    users.append(new_patient)
+                else:
+                    print('Password verification has failed')
+            elif option1 == 'd':
+                name = input('Enter name: ')
+                pwd = input('Enter password (integer only): ')
+                pwd_v = input('Verify password: ')
+                if pwd == pwd_v:
+                    new_doctor = User()
+                    new_doctor.setName(name)
+                    new_doctor.setPassword(pwd)
+                    doctors.append(new_doctor)
+                else:
+                    print('Password verification has failed')
             else:
-                print('Password verification has failed')
+                print('Option is not recognised')
 
         elif option == 'add':
             doc_name = input('Enter the doctor name: ')
