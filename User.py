@@ -18,3 +18,6 @@ class User:
 
     def setPassword(self, password: str) -> None:
         self.__password__ = password
+
+
+    

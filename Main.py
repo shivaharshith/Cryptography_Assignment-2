@@ -67,7 +67,7 @@ def viewUser() -> None:
                             'Time at which data was recorded: ' + str(block.getTimeStamp()))
                         print('Lender:' + lend)
                         print('Borrower:' + block.borrower_name())
-                        print('His Medical Information:')
+                        print('His Transaction Information:')
                         block.printInfo()
                         print()
                         flag = True
