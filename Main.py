@@ -160,9 +160,10 @@ if __name__ == '__main__':
             new_rec.addUsers(lender_name, borrower_name)
 
             flag = False
-
+            lFlag = False
             for lender in lenders:
                 if lender.getName() == lender_name and lender.getPassword() == lender_pwd:
+                    lFlag = True
                     for borrower in borrowers:
                         if borrower.getName() == borrower_name:
                             while True:
@@ -186,8 +187,11 @@ if __name__ == '__main__':
                             break
                 if flag:
                     break
-            if not flag:
-                print('Something is Wrong!!!')
+            if not lFlag: 
+                print('You are not registered as lender')
+            if lFlag and not flag:
+                print('You are not registered as borrower')
+            
 
         elif option == 'v':
             viewUser()
