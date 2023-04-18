@@ -7,6 +7,7 @@ class Record:
         self.__lender__ = ''
         self.__borrower__ = ''
         self.__info__ = []
+        self.__total__ = 0
 
     def addUsers(self, lender: str, borrower: str) -> None:
         self.__lender__ = lender
@@ -24,3 +25,6 @@ class Record:
     def printInfo(self) -> None:
         for data in self.__info__:
             print(data)
+
+    def getTotal(self) -> int:
+        return self.__total__

@@ -66,3 +66,6 @@ class Block:
 # To print the information
     def printInfo(self) -> None:
         self.__curr_transaction_info__.printInfo()
+
+    def total_amount(self) -> int:
+        return self.__curr_transaction_info__.getTotal()

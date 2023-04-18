@@ -68,6 +68,7 @@ def viewUser() -> None:
                         print('Lender:' + lend)
                         print('Borrower:' + block.borrower_name())
                         print('His Transaction Information:')
+                        print('Amount' + str(block.total_amount()))
                         block.printInfo()
                         print()
                         flag = True
@@ -93,6 +94,7 @@ def viewUser() -> None:
                         print('Lender:' + block.lender_name())
                         print('Borrower:' + bor)
                         print("Borrower's Transaction Data:")
+                        print('Amount' + str(block.total_amount()))
                         block.printInfo()
                         print()
                         flag = True
@@ -163,6 +165,8 @@ if __name__ == '__main__':
                                 ip = input('Do you want to enter transaction information (yes/no): ')
                                 if ip == 'yes':
                                     newdata = input()
+                                    borrower.setTotal(newdata)
+                                    lender.setTotal(newdata)
                                     new_rec.addInfo(newdata)
                                 elif ip == 'no':
                                     records.append(new_rec)
@@ -187,6 +191,5 @@ if __name__ == '__main__':
     with open('state', 'wb') as file:
         dump = (previousHash, blockchain, records, borrowers, lenders)
         pickle.dump(dump, file)
-
 
 
