@@ -13,9 +13,6 @@ def getDiffStr(difficulty: int) -> str:
 
 # Zero Knowledge Proof implementation
 def ZeroKnowledgeProof(y1: int) -> bool:
-    return True
-
-    
     print('\nUser Verification(Please confirm yourself as a user)')
     print('Using Zero Knowledge Proof(ZKP)')
     print('Pick a random number 'r' from 0 to 9')

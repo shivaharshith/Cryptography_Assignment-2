@@ -67,8 +67,8 @@ def viewUser() -> None:
                             'Time at which data was recorded: ' + str(block.getTimeStamp()))
                         print('Lender:' + lend)
                         print('Borrower:' + block.borrower_name())
-                        print('His Transaction Information:')
-                        print('Amount' + str(block.total_amount()))
+                        print('Lender Transaction Information:')
+                        print('Total Amount Loaned ' + str(block.total_amount()))
                         block.printInfo()
                         print()
                         flag = True
@@ -94,7 +94,7 @@ def viewUser() -> None:
                         print('Lender:' + block.lender_name())
                         print('Borrower:' + bor)
                         print("Borrower's Transaction Data:")
-                        print('Amount' + str(block.total_amount()))
+                        print('Total Amount Borrowed until now ' + str(block.total_amount()))
                         block.printInfo()
                         print()
                         flag = True
@@ -167,6 +167,8 @@ if __name__ == '__main__':
                                     newdata = input()
                                     borrower.setTotal(newdata)
                                     lender.setTotal(newdata)
+                                    new_rec.addUser(lender)
+                                    new_rec.addUser(borrower)
                                     new_rec.addInfo(newdata)
                                 elif ip == 'no':
                                     records.append(new_rec)
