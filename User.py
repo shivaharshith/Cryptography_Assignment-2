@@ -20,6 +20,6 @@ class User:
     def setPassword(self, password: str) -> None:
         self.__password__ = password
 
-    def setTotal(self, total: str) -> None:
-        self.__total__ = self.__total__ + int(total)
+    def setTotal(self, amount: str) -> None:
+        self.__total__ = self.__total__ + int(amount)
     

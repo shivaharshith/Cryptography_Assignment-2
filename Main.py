@@ -68,10 +68,12 @@ def viewUser() -> None:
                         print('Lender:' + lend)
                         print('Borrower:' + block.borrower_name())
                         print('Lender Transaction Information:')
-                        print('Total Amount Loaned ' + str(block.total_amount()))
+                        #print('Total Amount Loaned until now' + str(block.total_amount_lender()))
+                        print('Current Amount Loaned ')
                         block.printInfo()
                         print()
                         flag = True
+                print('Total Amount Loaned until now: ' + str(lender.__total__))
                 if flag:
                     break
         if not flag:
@@ -94,10 +96,12 @@ def viewUser() -> None:
                         print('Lender:' + block.lender_name())
                         print('Borrower:' + bor)
                         print("Borrower's Transaction Data:")
-                        print('Total Amount Borrowed until now ' + str(block.total_amount()))
+                        #print('Total Amount Borrowed until now ' + str(block.total_amount_borrower()))
+                        print('Current Amount Borrower ')
                         block.printInfo()
                         print()
                         flag = True
+                print('Total Amount Borrowed until now: ' + str(borrower.__total__))
                 if flag:
                     break
         if not flag:
@@ -167,8 +171,8 @@ if __name__ == '__main__':
                                     newdata = input()
                                     borrower.setTotal(newdata)
                                     lender.setTotal(newdata)
-                                    new_rec.addUser(lender)
-                                    new_rec.addUser(borrower)
+                                    new_rec.addLender(lender)
+                                    new_rec.addBorrower(borrower)
                                     new_rec.addInfo(newdata)
                                 elif ip == 'no':
                                     records.append(new_rec)

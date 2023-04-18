@@ -67,5 +67,8 @@ class Block:
     def printInfo(self) -> None:
         self.__curr_transaction_info__.printInfo()
 
-    def total_amount(self) -> int:
-        return self.__curr_transaction_info__.getTotal()
+    def total_amount_lender(self) -> int:
+        return self.__curr_transaction_info__.getLenderTotal()
+
+    def total_amount_borrower(self) -> int:
+        return self.__curr_transaction_info__.getBorrowerTotal()
