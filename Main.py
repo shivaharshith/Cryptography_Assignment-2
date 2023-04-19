@@ -71,6 +71,9 @@ def viewUser() -> None:
                         #print('Total Amount Loaned until now' + str(block.total_amount_lender()))
                         print('Current Amount Loaned ')
                         block.printInfo()
+                        for data in block.__curr_transaction_info__.__info__:
+                            if(int(data)<0):
+                                print(block.borrower_name() + ' returned ' + lend + ' Rs. ' + str((-1)*int(data)))
                         print()
                         flag = True
                 print('Total Amount Loaned until now: ' + str(lender.__total__))
@@ -99,6 +102,9 @@ def viewUser() -> None:
                         #print('Total Amount Borrowed until now ' + str(block.total_amount_borrower()))
                         print('Current Amount Borrower ')
                         block.printInfo()
+                        for data in block.__curr_transaction_info__.__info__:
+                            if(int(data) < 0):
+                                print(bor + ' returned ' + block.lender_name() +' Rs. ' + str((-1)*int(data)))
                         print()
                         flag = True
                 print('Total Amount Borrowed until now: ' + str(borrower.__total__))
