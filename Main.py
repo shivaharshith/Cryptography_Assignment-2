@@ -80,14 +80,19 @@ def viewUser() -> None:
                 if flag:
                     break
         if not flag:
-            print('lender Not Found')
+            print('Lender Not Found')
     elif val == 'b':
         bor = input('Enter your name: ')
         y = 0
+        bFlag = False
         for borrower in borrowers:
             if borrower.getName() == bor:
+                bFlag = True
                 x = int(borrower.getPassword())
                 y = pow(g, x, p)
+        if not bFlag:
+            print('Borrower not found')
+            return 
         if not ZeroKnowledgeProof(y):
             return
         flag = False
