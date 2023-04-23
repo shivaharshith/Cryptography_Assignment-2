@@ -15,7 +15,7 @@ def getDiffStr(difficulty: int) -> str:
 def ZeroKnowledgeProof(y1: int) -> bool:
     print('\nUser Verification(Please confirm yourself as a user)')
     print('Using Zero Knowledge Proof(ZKP)')
-    print('Pick a random number 'r' from 0 to 9')
+    print('Pick a random number "r" from 0 to 9')
     h = int(input('Calculate h = (2^r) mod 11 and Enter h: '))
     print('The value of h is ' + str(h))
     b = random.randint(0, 1)
